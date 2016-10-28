@@ -1,3 +1,4 @@
+Framework "4.6"
 properties {
     $solutionPath
 }
@@ -5,5 +6,5 @@ properties {
 task default -depends Clean
 
 task Clean {
-    Exec {MsBuild "$solutionPath"} 
+    Exec {MsBuild "$solutionPath" /t:Clean} 
 }
