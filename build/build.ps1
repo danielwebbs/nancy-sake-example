@@ -7,7 +7,7 @@ properties {
 task default -depends Build
 
 task Build -depends StartClean{
-    Exec {MsBuild "$solutionPath" /p:Configuration=$configuration} 
+    Exec {MsBuild "$solutionPath"} 
 }
 
 task StartClean {
