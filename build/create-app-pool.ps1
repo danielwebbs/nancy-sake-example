@@ -8,8 +8,11 @@ properties {
 
 task default -depends CreateAppPool
 
-task CreateAppPool {
+task CreateAppPool -depends InvokeRemoveExistingAppPool {
     Write-Host "Creating App Pool"
+    New-Item IIS:\AppPools\$appPoolName
+}
+
+task InvokeRemoveExistingAppPool {
     Invoke-psake 'remove-existing-app-pool.ps1' -parameters @{'appPoolName' = $appPoolName}
-    $newAppPool = New-Item IIS:\AppPools\$appPoolName
 }

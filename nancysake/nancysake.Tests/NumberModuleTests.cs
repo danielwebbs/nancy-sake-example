@@ -23,7 +23,7 @@ namespace nancysake.Tests
         }
 
         [Test]
-        public void TestNumberModuleGet_GivenNothing_ShouldReturnTheIntergerFive()
+        public void TestNumberModuleGet_GivenNothing_ShouldReturnTheIntergerTen()
         {
             var bootstrapper = new Nancy.DefaultNancyBootstrapper();
             var browser = new Browser(bootstrapper);
@@ -33,7 +33,7 @@ namespace nancysake.Tests
                 with.HttpRequest();
             });
 
-            Assert.AreEqual(5, int.Parse(result.Body.AsString()));
+            Assert.AreEqual(10, int.Parse(result.Body.AsString()));
         }
 
         [Test]

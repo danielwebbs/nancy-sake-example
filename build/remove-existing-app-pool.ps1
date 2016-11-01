@@ -1,3 +1,5 @@
+Import-Module '.\psake-master\psake.psm1'
+
 properties {
     $appPoolName
 }
