@@ -24,7 +24,7 @@ task default -depends DeployLocal
 
 task DeployLocal -depends Test {
     exec { msbuild "$PSScriptRoot\..\nancysake\nancysake\nancysake.csproj"  /p:DeployOnBuild=true /p:PublishProfile="test" /p:Configuration=$configuration /p:AspnetCompilerPath="C:\windows\Microsoft.NET\Framework\v4.0.30319" /p:VisualStudioVersion=14.0 } 
-
+    Invoke-psake "createdatabase.ps1"
 }
 
 task Test -depends Build {
@@ -39,7 +39,6 @@ task Test -depends Build {
 task Build {
     Invoke-psake 'build.ps1' -parameters @{'solutionPath' = '..\nancysake\nancysake.sln'}
 }
-
 
 # task InvokeCreateAppPool {
 #     Invoke-psake 'create-app-pool.ps1' -parameters @{'appPoolName' = $appPoolName}

@@ -1,4 +1,6 @@
-﻿using Nancy;
+﻿using System;
+using Nancy;
+using nancysake.Services;
 
 namespace nancysake.Modules.NumberModule
 {
@@ -10,7 +12,14 @@ namespace nancysake.Modules.NumberModule
         {
             Get["/number"] = _ => { return Response.AsJson(10); };
 
-            Get["/Nancy"] = _ => "Wrong";
+            Get["/version"] = parameters => {
+                var buildVersionService = new BuildVersionService();
+                var buildVersion = buildVersionService.GetBuildVersionNumber();
+                return new
+                {
+                    buildversion = buildVersion
+                };
+            };
 
             Get["/"] = _ => "Running Nancy";
 
@@ -23,5 +32,6 @@ namespace nancysake.Modules.NumberModule
   
 
         }
+
     }
 }
